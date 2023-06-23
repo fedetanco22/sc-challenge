@@ -56,7 +56,7 @@ export default function RoverPage() {
       })
     } catch (error) {
       new Error(error)
-      // setOnLoading(false)
+      setOnLoading(false)
     }
   }, [rover, startDate, debouncedValue, page, camera])
 
@@ -118,11 +118,11 @@ export default function RoverPage() {
 
       {/* <SearchBookmarks searchParams={{ rover, startDate, sol, camera }} />
       <SearchBookmarkList /> */}
-      {data && data?.photos?.length !== 0 ? (
+      {onLoading ? (
+        <Spinner />
+      ) : (
         <>
-          {onLoading ? (
-            <Spinner onLoading={onLoading} />
-          ) : (
+          {data?.photos?.length !== 0 && (
             <>
               <RoverList data={data.photos || []} />
 
@@ -147,9 +147,8 @@ export default function RoverPage() {
               </Stack>
             </>
           )}
+          {!data || (data.photos.length === 0 && <p>No images found</p>)}
         </>
-      ) : (
-        <p>No images found</p>
       )}
     </div>
   )
