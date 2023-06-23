@@ -24,22 +24,13 @@ export default function RoverPage() {
   const [data, setData] = useState([])
   const [totalPages, setTotalPages] = useState()
   const [page, setPage] = useState(1)
-  // const [startDate, setStartDate] = useState(new Date())
-  // const [sol, setSol] = useState()
-  // const [camera, setCamera] = useState('')
+  const [startDate, setStartDate] = useState(new Date())
+  const [sol, setSol] = useState()
+  const [camera, setCamera] = useState('')
   const [maxDate, setMaxDate] = useState()
   const [minDate, setMinDate] = useState()
   const [maxSol, setMaxSol] = useState()
   const [onLoading, setOnLoading] = useState(false)
-  const {
-    startDate,
-    setStartDate,
-    sol,
-    setSol,
-    camera,
-    setCamera,
-    restoreSearchParams,
-  } = useAppContext()
 
   const [debouncedValue] = useDebounce(sol, 1000)
 
@@ -114,8 +105,8 @@ export default function RoverPage() {
         />
       </div>
 
-      <SearchBookmarks searchParams={{ rover, startDate, sol, camera }} />
-      <SearchBookmarkList />
+      {/* <SearchBookmarks searchParams={{ rover, startDate, sol, camera }} />
+      <SearchBookmarkList /> */}
       {data && data?.photos?.length !== 0 ? (
         <>
           {onLoading ? (

@@ -11,7 +11,7 @@ function Home({ data }) {
     router.push('/rovers/curiosity')
   }, [router])
 
-  return null
+  return <div></div>
 }
 
 export default Home

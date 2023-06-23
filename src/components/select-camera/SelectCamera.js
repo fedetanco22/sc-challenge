@@ -35,10 +35,12 @@ const roverCameraOptions = {
 
 function SelectCamera({ handleCameraSelected, rover }) {
   const [selectedCamera, setSelectedCamera] = useState(null)
+  const [isMounted, setIsMounted] = useState(false)
   const options = roverCameraOptions[rover] || []
 
   useEffect(() => {
     setSelectedCamera(null)
+    setIsMounted(true)
   }, [rover])
 
   const handleCamera = selectedOption => {
@@ -47,12 +49,16 @@ function SelectCamera({ handleCameraSelected, rover }) {
   }
 
   return (
-    <Select
-      options={options}
-      value={selectedCamera}
-      onChange={handleCamera}
-      isClearable={true}
-    />
+    <>
+      {isMounted ? (
+        <Select
+          options={options}
+          value={selectedCamera}
+          onChange={handleCamera}
+          isClearable={true}
+        />
+      ) : null}
+    </>
   )
 }
 

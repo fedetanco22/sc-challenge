@@ -1,30 +1,26 @@
 import useAppContext from '../../utils/context/useAppContext'
 
 function SearchBookmarkList({}) {
-  const {
-    favorites = [],
-    removeFromFavorites,
-    restoreSearchParams,
-  } = useAppContext()
+  const { favorites } = useAppContext()
 
-  const handleRemoveBookmark = bookmark => {
-    removeFromFavorites(bookmark.id)
-  }
+  //   const handleRemoveBookmark = bookmark => {
+  //     removeFromFavorites(bookmark.id)
+  //   }
 
-  const handleRestoreBookmark = bookmark => {
-    console.log(
-      '🚀 ~ file: SearchBookmarkList.js:15 ~ handleRestoreBookmark ~ bookmark:',
-      bookmark.searchParams
-    )
-    restoreSearchParams(bookmark.searchParams)
-  }
+  //   const handleRestoreBookmark = bookmark => {
+  //     console.log(
+  //       '🚀 ~ file: SearchBookmarkList.js:15 ~ handleRestoreBookmark ~ bookmark:',
+  //       bookmark.searchParams
+  //     )
+  //     restoreSearchParams(bookmark.searchParams)
+  //   }
 
   return (
-    <div>
+    <>
       <h2>Bookmarks</h2>
-      <ul>
+      <>
         {favorites.map(bookmark => (
-          <li key={bookmark.id}>
+          <div key={bookmark.id}>
             {bookmark.name}
             <button onClick={() => handleRestoreBookmark(bookmark)}>
               Restore
@@ -32,10 +28,10 @@ function SearchBookmarkList({}) {
             <button onClick={() => handleRemoveBookmark(bookmark)}>
               Remove
             </button>
-          </li>
+          </div>
         ))}
-      </ul>
-    </div>
+      </>
+    </>
   )
 }
 

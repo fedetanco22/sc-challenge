@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 import { useStorage } from '../hooks/useStorage'
 
@@ -6,11 +6,26 @@ const AppContext = createContext()
 const useAppContext = () => useContext(AppContext)
 
 export const AppProvider = ({ children }) => {
-  const [favorites, setFavorites] = useStorage('roverFavorites', [])
-  const [startDate, setStartDate] = useState(new Date())
+  const [local] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const from_localStorage = window.localStorage.getItem('favorites')
+      if (from_localStorage === null || from_localStorage === undefined) {
+        return []
+      }
 
+      return from_localStorage ? from_localStorage : []
+    }
+    return []
+  })
+
+  const [favorites, setFavorites] = useState(local)
+  const [startDate, setStartDate] = useState(new Date())
   const [sol, setSol] = useState()
   const [camera, setCamera] = useState('')
+
+  useEffect(() => {
+    window.localStorage.setItem('favorites', JSON.stringify(favorites))
+  }, [favorites, local])
 
   const addToFavorites = bookmark => {
     setFavorites(prevFavorites => [...prevFavorites, bookmark])
