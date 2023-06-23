@@ -120,7 +120,7 @@ export default function RoverPage({ initialData }) {
         <Spinner />
       ) : (
         <>
-          {data && (
+          {data.length !== 0 && (
             <>
               <RoverList data={data} />
 
