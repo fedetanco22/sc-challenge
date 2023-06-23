@@ -6,26 +6,26 @@ const AppContext = createContext()
 const useAppContext = () => useContext(AppContext)
 
 export const AppProvider = ({ children }) => {
-  const [local] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const from_localStorage = window.localStorage.getItem('favorites')
-      if (from_localStorage === null || from_localStorage === undefined) {
-        return []
-      }
+  // const [local] = useState(() => {
+  //   if (typeof window !== 'undefined') {
+  //     const from_localStorage = window.localStorage.getItem('favorites')
+  //     if (from_localStorage === null || from_localStorage === undefined) {
+  //       return []
+  //     }
 
-      return from_localStorage ? from_localStorage : []
-    }
-    return []
-  })
+  //     return from_localStorage ? from_localStorage : []
+  //   }
+  //   return []
+  // })
 
-  const [favorites, setFavorites] = useState(local)
+  // const [favorites, setFavorites] = useState(local)
   const [startDate, setStartDate] = useState(new Date())
   const [sol, setSol] = useState()
   const [camera, setCamera] = useState('')
 
-  useEffect(() => {
-    window.localStorage.setItem('favorites', JSON.stringify(favorites))
-  }, [favorites, local])
+  // useEffect(() => {
+  //   window.localStorage.setItem('favorites', JSON.stringify(favorites))
+  // }, [favorites, local])
 
   const addToFavorites = bookmark => {
     setFavorites(prevFavorites => [...prevFavorites, bookmark])
@@ -47,18 +47,20 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{
-        favorites,
-        addToFavorites,
-        removeFromFavorites,
-        restoreSearchParams,
-        startDate,
-        setStartDate,
-        sol,
-        setSol,
-        camera,
-        setCamera,
-      }}
+      value={
+        {
+          // favorites,
+          // addToFavorites,
+          // removeFromFavorites,
+          // restoreSearchParams,
+          // startDate,
+          // setStartDate,
+          // sol,
+          // setSol,
+          // camera,
+          // setCamera,
+        }
+      }
     >
       {children}
     </AppContext.Provider>

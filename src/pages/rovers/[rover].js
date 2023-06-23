@@ -85,7 +85,7 @@ export default function RoverPage() {
   return (
     <div className="Rover__container">
       <div className="Rover__search-params-container">
-        <div className="Rover__search-params-container__date-picker">
+        <div className="Rover__search-params-container__params">
           <p>Earth Date:</p>
           <DatePicker
             showIcon
@@ -99,7 +99,7 @@ export default function RoverPage() {
             showYearDropdown
           />
         </div>
-        <div className="Rover__search-params-container__date-picker">
+        <div className="Rover__search-params-container__params">
           <p>Martian Sol Date: </p>
           <SolDateInput
             maxSol={maxSol}
@@ -107,10 +107,13 @@ export default function RoverPage() {
             sol={sol}
           />
         </div>
-        <SelectCamera
-          handleCameraSelected={handleCameraSelected}
-          rover={rover}
-        />
+        <div className="Rover__search-params-container__params">
+          <p>Select Camera: </p>
+          <SelectCamera
+            handleCameraSelected={handleCameraSelected}
+            rover={rover}
+          />
+        </div>
       </div>
 
       {/* <SearchBookmarks searchParams={{ rover, startDate, sol, camera }} />
@@ -120,24 +123,30 @@ export default function RoverPage() {
           {onLoading ? (
             <Spinner onLoading={onLoading} />
           ) : (
-            <RoverList data={data.photos || []} />
-          )}
-          <Stack spacing={2}>
-            <Pagination
-              count={totalPages}
-              variant="outlined"
-              color="primary"
-              page={page}
-              onChange={handlePagination}
-              renderItem={item => (
-                <PaginationItem
-                  color="secondary"
-                  slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
-                  {...item}
+            <>
+              <RoverList data={data.photos || []} />
+
+              <Stack spacing={2}>
+                <Pagination
+                  count={totalPages}
+                  variant="outlined"
+                  color="primary"
+                  page={page}
+                  onChange={handlePagination}
+                  renderItem={item => (
+                    <PaginationItem
+                      color="secondary"
+                      slots={{
+                        previous: ArrowBackIcon,
+                        next: ArrowForwardIcon,
+                      }}
+                      {...item}
+                    />
+                  )}
                 />
-              )}
-            />
-          </Stack>
+              </Stack>
+            </>
+          )}
         </>
       ) : (
         <p>No images found</p>
