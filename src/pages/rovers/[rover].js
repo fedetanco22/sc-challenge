@@ -147,7 +147,7 @@ export default function RoverPage() {
               </Stack>
             </>
           )}
-          {!data || (data.photos.length === 0 && <p>No images found</p>)}
+          {!data || (data?.photos?.length === 0 && <p>No images found</p>)}
         </>
       )}
     </div>
