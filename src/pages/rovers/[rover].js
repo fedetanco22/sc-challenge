@@ -14,9 +14,7 @@ import SelectCamera from '../../components/select-camera/SelectCamera'
 import SolDateInput from '../../components/sol-date-input/SolDateInput'
 import RoverList from '../../components/rover-list/RoverList'
 import Spinner from '../../components/spinner/Spinner'
-import SearchBookmarks from '../../components/search-bookmarks/SearchBookmarks'
-import SearchBookmarkList from '../../components/search-bookmark-list/SearchBookmarkList'
-import useAppContext from '../../utils/context/useAppContext'
+import NoDataFound from '../../components/no-data-found/NoDataFound'
 
 import { getData } from '@/src/utils/getData'
 
@@ -122,7 +120,7 @@ export default function RoverPage({ initialData }) {
         <Spinner />
       ) : (
         <>
-          {data?.length !== 0 && (
+          {data && (
             <>
               <RoverList data={data} />
 
@@ -147,7 +145,7 @@ export default function RoverPage({ initialData }) {
               </Stack>
             </>
           )}
-          {(!data || data?.length === 0) && <p>No images found</p>}
+          <NoDataFound data={data} />
         </>
       )}
     </div>
