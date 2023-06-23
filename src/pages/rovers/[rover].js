@@ -20,8 +20,8 @@ import useAppContext from '../../utils/context/useAppContext'
 
 import { getData } from '@/src/utils/getData'
 
-export default function RoverPage() {
-  const [data, setData] = useState([])
+export default function RoverPage({ initialData }) {
+  const [data, setData] = useState(initialData)
   const [totalPages, setTotalPages] = useState()
   const [page, setPage] = useState(1)
   const [startDate, setStartDate] = useState(new Date())
@@ -47,7 +47,7 @@ export default function RoverPage() {
         sol: debouncedValue,
         camera: camera,
       }).then(res => {
-        setData(res.data)
+        setData(res.images)
         setTotalPages(res.totalPages)
         setMaxDate(parseISO(res.maxDate))
         setMinDate(parseISO(res.landingDate))
@@ -122,9 +122,9 @@ export default function RoverPage() {
         <Spinner />
       ) : (
         <>
-          {data?.photos?.length !== 0 && (
+          {data?.length !== 0 && (
             <>
-              <RoverList data={data.photos || []} />
+              <RoverList data={data} />
 
               <Stack spacing={2}>
                 <Pagination
@@ -147,9 +147,17 @@ export default function RoverPage() {
               </Stack>
             </>
           )}
-          {!data || (data?.photos?.length === 0 && <p>No images found</p>)}
+          {(!data || data?.length === 0) && <p>No images found</p>}
         </>
       )}
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      initialData: [],
+    },
+  }
 }

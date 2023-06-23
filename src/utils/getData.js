@@ -5,7 +5,6 @@ export async function getData({
   rover = 'curiosity',
   startDate,
 }) {
-  console.log('🚀 ~ file: getData.js:2 ~ getData ~ rover:', rover)
   let url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?api_key=${process.env.NASA_API_KEY}`
   let manifests = `https://api.nasa.gov/mars-photos/api/v1/manifests/${rover}?api_key=${process.env.NASA_API_KEY}`
   let manifest = await fetch(manifests)
@@ -42,6 +41,9 @@ export async function getData({
 
   const dataResponse = await fetch(url)
   const data = await dataResponse.json()
+
+  const images = data.photos
+
   return {
     maxDate,
     landingDate,
@@ -49,6 +51,6 @@ export async function getData({
     totalPages,
     totalImages,
     page,
-    data,
+    images,
   }
 }
