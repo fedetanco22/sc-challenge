@@ -1,7 +1,5 @@
 import Image from 'next/image'
 
-import useAppContext from '../../utils/context/useAppContext'
-
 const RoverList = ({ data }) => {
   return (
     <div className="RoverList__container">
@@ -17,6 +15,28 @@ const RoverList = ({ data }) => {
               priority
               className="RoverList__images__img"
             />
+            <div>
+              <p className="RoverList__images__text">
+                <span className="RoverList__images__text__span">ID:</span>{' '}
+                {item.id}
+              </p>
+              <p className="RoverList__images__text">
+                <span className="RoverList__images__text__span">Camera:</span>{' '}
+                {item.camera.full_name}
+              </p>
+              <p className="RoverList__images__text">
+                <span className="RoverList__images__text__span">
+                  Earth Date:
+                </span>{' '}
+                {item.earth_date}
+              </p>
+              <p className="RoverList__images__text">
+                <span className="RoverList__images__text__span">
+                  Martian Sol Date:
+                </span>{' '}
+                {item.sol}
+              </p>
+            </div>
           </div>
         )
       })}

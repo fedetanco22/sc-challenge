@@ -56,7 +56,7 @@ export default function RoverPage() {
       })
     } catch (error) {
       new Error(error)
-      setOnLoading(false)
+      // setOnLoading(false)
     }
   }, [rover, startDate, debouncedValue, page, camera])
 
@@ -83,22 +83,30 @@ export default function RoverPage() {
   }
 
   return (
-    <>
-      <div>
-        <DatePicker
-          selected={startDate}
-          onChange={date => {
-            console.log('DATE', date)
-            setStartDate(date)
-          }}
-          maxDate={maxDate}
-          minDate={minDate}
-          dateFormat="yyyy-MM-dd"
-          showYearDropdown
-        />
-
-        <SolDateInput maxSol={maxSol} handleSolDate={handleSolDate} sol={sol} />
-
+    <div className="Rover__container">
+      <div className="Rover__search-params-container">
+        <div className="Rover__search-params-container__date-picker">
+          <p>Earth Date:</p>
+          <DatePicker
+            showIcon
+            selected={startDate}
+            onChange={date => {
+              setStartDate(date)
+            }}
+            maxDate={maxDate}
+            minDate={minDate}
+            dateFormat="yyyy-MM-dd"
+            showYearDropdown
+          />
+        </div>
+        <div className="Rover__search-params-container__date-picker">
+          <p>Martian Sol Date: </p>
+          <SolDateInput
+            maxSol={maxSol}
+            handleSolDate={handleSolDate}
+            sol={sol}
+          />
+        </div>
         <SelectCamera
           handleCameraSelected={handleCameraSelected}
           rover={rover}
@@ -134,6 +142,6 @@ export default function RoverPage() {
       ) : (
         <p>No images found</p>
       )}
-    </>
+    </div>
   )
 }
