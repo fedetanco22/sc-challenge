@@ -20,8 +20,8 @@ import { getData } from '@/src/utils/getData'
 
 export default function RoverPage({ initialData }) {
   const [data, setData] = useState(initialData)
-  const [totalPages, setTotalPages] = useState()
   const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState()
   const [startDate, setStartDate] = useState(new Date())
   const [sol, setSol] = useState()
   const [camera, setCamera] = useState('')
@@ -37,14 +37,14 @@ export default function RoverPage({ initialData }) {
 
   useEffect(() => {
     setOnLoading(true)
-    try {
-      getData({
-        rover: rover,
-        page: page,
-        startDate: startDate,
-        sol: debouncedValue,
-        camera: camera,
-      }).then(res => {
+    getData({
+      rover: rover,
+      page: page,
+      startDate: startDate,
+      sol: debouncedValue,
+      camera: camera,
+    })
+      .then(res => {
         setData(res.images)
         setTotalPages(res.totalPages)
         setMaxDate(parseISO(res.maxDate))
@@ -52,10 +52,10 @@ export default function RoverPage({ initialData }) {
         setMaxSol(res.maxSol)
         setOnLoading(false)
       })
-    } catch (error) {
-      new Error(error)
-      setOnLoading(false)
-    }
+      .catch(error => {
+        console.error(error)
+        setOnLoading(false)
+      })
   }, [rover, startDate, debouncedValue, page, camera])
 
   useEffect(() => {
