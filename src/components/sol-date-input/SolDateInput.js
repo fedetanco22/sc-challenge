@@ -10,7 +10,7 @@ function SolDateInput({ maxSol, handleSolDate, sol }) {
       <input
         type="number"
         onChange={handleSolDateChange}
-        value={sol}
+        value={sol || ''}
         placeholder={`Enter a sol date between 0 and ${maxSol}`}
       />
     </>

@@ -1,0 +1,87 @@
+.button {
+  cursor: pointer;
+  height: 40px;
+  padding: 0 13px;
+  border-radius: 90px;
+  border: 2px;
+  gap: 12px;
+  color: var(--color-white);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xs {
+  width: 80px;
+}
+
+.sm {
+  width: 137px;
+}
+.md {
+  width: 200px;
+}
+
+.lg {
+  width: 352px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.primary {
+  background-color: var(--color-primary);
+}
+.secondary {
+  background-color: var(--color-secondary);
+}
+.outline {
+  background-color: transparent;
+  border: 2px solid var(--color-gray-light);
+}
+
+.link {
+  background: none;
+  border: none;
+  width: auto;
+  padding: 0;
+  color: var(--color-gray-light);
+}
+
+.link:hover {
+  color: var(--color-white);
+}
+
+.roundedButton {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smallRoundedButton {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active {
+  background-color: var(--color-white);
+  color: var(--color-gray);
+  min-width: 80px;
+  height: 28px;
+}
+
+.active:hover {
+  background-color: var(--color-white);
+  color: var(--color-gray);
+}

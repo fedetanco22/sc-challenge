@@ -1,0 +1,97 @@
+.grid {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  grid-gap: 1rem;
+  margin: 2.75rem 0;
+}
+@media screen and (min-width: 556px) {
+  .grid {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+}
+
+.panels {
+  flex: 1;
+  height: 100%;
+  padding: 0 2rem;
+}
+@media screen and (min-width: 556px) {
+  .panels {
+    padding: 0rem;
+  }
+}
+
+.panels img {
+  border-radius: 1rem;
+}
+
+.rightPanel {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+}
+
+.panelContent {
+  display: flex;
+  flex-direction: column;
+  max-width: 454px;
+  gap: 40px;
+}
+
+.panelContent h1 {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 64px;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.avatarContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.captionTitle {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--color-gray-light);
+}
+
+.caption {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--color-white);
+}
+
+.buttonContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.pageButtons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 8px;
+}
