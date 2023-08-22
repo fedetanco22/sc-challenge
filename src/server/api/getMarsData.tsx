@@ -11,10 +11,10 @@ export interface DataProps {
 }
 
 export const getMarsData = async ({
+  rover = 'curiosity',
+  page = 1,
   sol,
   camera,
-  page = 1,
-  rover = 'curiosity',
   startDate,
 }: {
   sol?: number
@@ -39,7 +39,8 @@ export const getMarsData = async ({
     const today = startDate
     const year = today.getFullYear()
     const month = String(today.getMonth() + 1).padStart(2, '0')
-    const day = String(today.getDate() - 1).padStart(2, '0')
+    const day = String(today.getDate() - 2).padStart(2, '0')
+    console.log('🚀 ~ file: getMarsData.tsx:43 ~ day:', day)
 
     url += `&earth_date=${year}-${month}-${day}`
   }

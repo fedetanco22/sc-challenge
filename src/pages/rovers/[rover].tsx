@@ -11,14 +11,12 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useDebounce } from 'use-debounce'
 import { GetServerSideProps } from 'next'
 
-import SelectCamera from '@/components/select-camera/SelectCamera'
 import SolDateInput from '@/components/sol-date-input/SolDateInput'
 import RoverList from '@/components/RoverList/RoverList'
 import Spinner from '@/components/Spinner/Spinner'
 import NoDataFound from '@/components/NoDataFound/NoDataFound'
 import { getMarsData } from '@/server/api/getMarsData'
 import { MarsImage } from '@/interfaces/Interfaces'
-import Filters from '@/components/Filters/Filters'
 
 interface RoverPageProps {
   initialData: MarsImage[]
@@ -114,12 +112,7 @@ const RoverPage: FC<RoverPageProps> = ({ initialData }) => {
             sol={sol}
           />
         </div>
-        <div className="Rover__search-params-container__params">
-          <Filters
-            // handleCameraSelected={handleCameraSelected}
-            rover={'curiosity'}
-          />
-        </div>
+        <div className="Rover__search-params-container__params"></div>
       </div>
 
       {onLoading ? (

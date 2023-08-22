@@ -6,17 +6,11 @@ import Layout from '@/components/Layout/Layout'
 import { PoppinsFont } from '@/utils/fonts'
 import Filters from '@/components/Filters/Filters'
 
-// const LazyRoverList = React.lazy(
-//   () => import('@/src/components/RoverList/RoverList')
-// )
+const LazyRoverList = React.lazy(
+  () => import('@/src/components/RoverList/RoverList')
+)
 
 export default function Home(): JSX.Element {
-  // const router = useRouter()
-
-  // useEffect(() => {
-  //   router.push('/rovers/curiosity')
-  // }, [router])
-
   return (
     <>
       <div className={`${PoppinsFont.className}`}>
@@ -26,8 +20,10 @@ export default function Home(): JSX.Element {
           keywords="NASA, Rover, Curiosity, Opportunity, Spirit, Mars, Federico Tanco"
         >
           <PrincipalContent />
-          <Filters rover={'curiosity'} />
-          <Suspense fallback={<Spinner />}>{/* <LazyRoverList /> */}</Suspense>
+          <Filters />
+          <Suspense fallback={<Spinner />}>
+            <LazyRoverList />
+          </Suspense>
         </Layout>
       </div>
     </>

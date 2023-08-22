@@ -1,22 +1,27 @@
 import React, { FC, memo } from 'react'
 
+import Spinner from '../Spinner/Spinner'
+
 import styles from './RoverList.module.css'
 
-import { MarsImage } from '@/interfaces/Interfaces'
 import RoverCard from '@/components/RoverCard/RoverCard'
+import { useAppDataContext } from '@/context/useAppContext'
 
-interface RoverListProps {
-  data: MarsImage[] // Use the MarsImage type here
-}
+const RoverList: FC = () => {
+  const { marsData, loading } = useAppDataContext()
 
-const RoverList: FC<RoverListProps> = ({ data }) => {
+  // Ensure marsData is an array before mapping over it
   const renderRovers = (): JSX.Element[] => {
-    return data.map(rover => {
-      return <RoverCard key={rover.id} rover={rover} />
-    })
+    return marsData.map(rover => <RoverCard key={rover.id} rover={rover} />)
   }
 
-  return <div className={styles.roverList}>{renderRovers()}</div>
+  if (loading) return <Spinner />
+
+  return (
+    <div className={styles.roverList}>
+      {renderRovers()} {/* Notice that it's an array of elements */}
+    </div>
+  )
 }
 
 export default memo(RoverList)
