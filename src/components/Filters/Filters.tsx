@@ -2,12 +2,7 @@ import React, { useState } from 'react'
 
 import SelectInput from './SelectInput/SelectInput'
 import styles from './Filters.module.scss'
-
-const roverList = [
-  { label: 'Curiosity', value: 'curiosity' },
-  { label: 'Opportunity', value: 'opportunity' },
-  { label: 'Spirit', value: 'spirit' },
-]
+import RoverSelect from './RoverSelect/RoverSelect'
 
 interface RoverCameraOptions {
   [rover: string]: { value: string; label: string }[]
@@ -49,9 +44,8 @@ const Filters = ({ rover }: { rover: string }): JSX.Element => {
   const cameraOptions = roverCameraOptions[rover] || []
   return (
     <div className={`${styles.filters__container} flex flex__column`}>
-      <SelectInput options={roverList} title="Select a Rover" />
+      <RoverSelect />
       <SelectInput options={cameraOptions} title="Select a Camera" />
-      <SelectInput options={roverList} title="Select a Earth Date" />
     </div>
   )
 }
