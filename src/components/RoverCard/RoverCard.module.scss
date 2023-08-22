@@ -1,4 +1,4 @@
-.auctionCard {
+.roverCard {
   padding: 12px;
   background-color: var(--color-gray-dark);
   display: flex;
@@ -7,7 +7,7 @@
   border-radius: 20px;
   width: 100%;
   max-width: 256px;
-  /* max-height: 474px; */
+  max-height: 474px;
 }
 
 .image {
@@ -31,17 +31,17 @@
   justify-content: space-between;
 }
 
-.auctionCard .image img {
+.roverCard .image img {
   border-radius: 16px;
 }
 
-.auctionCardInfo {
+.roverCardInfo {
   display: flex;
   flex-flow: column nowrap;
   gap: 12px;
 }
 
-.auctionCardInfoTitle {
+.roverCardInfoTitle {
   flex: 1;
   display: flex;
   flex-flow: row nowrap;
@@ -67,12 +67,12 @@
   border: 2px solid var(--color-secondary);
 }
 
-.auctionBid {
+.roverBid {
   height: 26px;
   position: relative;
 }
 
-.auctionBidUser {
+.roverBidUser {
   position: absolute;
   top: 0;
   left: 0;
@@ -83,7 +83,7 @@
   align-items: center;
 }
 
-.auctionStock {
+.roverStock {
   position: absolute;
   right: 0;
   text-align: end;

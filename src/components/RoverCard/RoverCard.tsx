@@ -2,9 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { motion, Variants } from 'framer-motion'
 
-// import CircleImage from '../../Images/CircleImage/CircleImage'
-
-import styles from './RoverCard.module.css'
+import styles from './RoverCard.module.scss'
 
 import Button from '@/components/Button/Button'
 import { MarsImage } from '@/src/interfaces/Interfaces'
@@ -12,7 +10,7 @@ import CandlesticksSVG from '@/public/icons/candlesticks.svg'
 import ScatterSVG from '@/public/icons/scatter.svg'
 import HeartSVG from '@/public/icons/heart.svg'
 
-interface AuctionProps {
+interface RoverProps {
   rover: MarsImage
 }
 
@@ -25,8 +23,8 @@ const overlayVariants: Variants = {
   visible: {
     opacity: 1,
     borderRadius: '16px',
-    backgroundColor: 'rgba(255, 255, 255, 1)',
-    transition: { duration: 1.5 },
+    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+    transition: { duration: 0.3 },
   },
 }
 
@@ -58,9 +56,9 @@ const spanStyles: React.CSSProperties = {
   textTransform: 'uppercase',
 }
 
-const AuctionCard: React.FC<AuctionProps> = ({ rover }): JSX.Element => {
+const RoverCard: React.FC<RoverProps> = ({ rover }): JSX.Element => {
   return (
-    <div className={styles.auctionCard}>
+    <div className={styles.roverCard}>
       <div className={styles.image}>
         <motion.div
           className={styles.overlay}
@@ -95,30 +93,30 @@ const AuctionCard: React.FC<AuctionProps> = ({ rover }): JSX.Element => {
           src={rover.img_src}
           alt={`${rover.id}`}
           fill
-          // width={200}
-          // height={150}
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 768px) 100vw, 768px"
           // className="RoverList__images__img"
         />
         {/* <Image
           src={rover.}
           alt={`${rover.author}-${rover.media.id}`}
           fill
-          sizes="(max-width: 768px) 100vw, 400px"
+          
         /> */}
       </div>
-      <div className={styles.auctionCardInfo}>
-        <div className={styles.auctionCardInfoTitle}>
+      <div className={styles.roverCardInfo}>
+        <div className={styles.roverCardInfoTitle}>
           <h3 className={styles.title}>Amazing digital art</h3>
           <span className={styles.instantPrice}>900</span>
         </div>
-        <div className={styles.auctionBid}>
+        <div className={styles.roverBid}>
           <div>
             {/* {rover.bidUsers.length > 0 && (
-              <div className={styles.auctionBidUsers}>
+              <div className={styles.roverBidUsers}>
                 {rover.bidUsers.map((user, index) => (
                   <div
                     key={index}
-                    className={styles.auctionBidUser}
+                    className={styles.roverBidUser}
                     style={{
                       zIndex: index + 1,
                       left: index * 16,
@@ -135,7 +133,7 @@ const AuctionCard: React.FC<AuctionProps> = ({ rover }): JSX.Element => {
                 ))}
               </div>
             )} */}
-            <div className={styles.auctionStock}>
+            <div className={styles.roverStock}>
               <span className={styles.stock}>2 in stock</span>
             </div>
           </div>
@@ -161,4 +159,4 @@ const AuctionCard: React.FC<AuctionProps> = ({ rover }): JSX.Element => {
   )
 }
 
-export default AuctionCard
+export default RoverCard

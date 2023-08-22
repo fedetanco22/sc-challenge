@@ -82,7 +82,7 @@ export const AppContextProvider: FC<AppWrapperChildrenInterface> = ({
   const [filterBySol, setFilterBySol] = useState<number | undefined>(undefined)
   const [filterByCamera, setFilterByCamera] = useState<string>()
 
-  const [startDate, setStartDate] = useState<Date>(new Date())
+  const [startDate, _] = useState<Date>(new Date())
   const [loading, setLoading] = useState<boolean>(true)
 
   const [marsData, setMarsData] = useState<MarsImage[]>([])
@@ -111,7 +111,7 @@ export const AppContextProvider: FC<AppWrapperChildrenInterface> = ({
       .catch(() => setLoading(false))
   }, [filterByRover, filterByPage, filterBySol, filterByCamera, startDate])
 
-  const debouncedFetchData = debounce(fetchMarsData, 100)
+  const debouncedFetchData = debounce(fetchMarsData, 300)
 
   useEffect(() => {
     debouncedFetchData()
