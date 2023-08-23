@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 function SolDateInput({ maxSol, handleSolDate, sol }) {
   const handleSolDateChange = event => {
     handleSolDate(event.target.value)
