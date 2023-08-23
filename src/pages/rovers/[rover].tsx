@@ -9,17 +9,10 @@
 // import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 // import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 // import { useDebounce } from 'use-debounce'
-// import { GetServerSideProps } from 'next'
 
 // import SolDateInput from '@/components/sol-date-input/SolDateInput'
 // import RoverList from '@/components/RoverList/RoverList'
 // import Spinner from '@/components/Spinner/Spinner'
-import { getMarsData } from '@/server/api/getMarsData'
-import { MarsImage } from '@/interfaces/Interfaces'
-
-interface RoverPageProps {
-  initialData: MarsImage[]
-}
 
 const RoverPage = (): null => {
   // const [data, setData] = useState(initialData)
@@ -139,31 +132,3 @@ const RoverPage = (): null => {
 }
 
 export default RoverPage
-
-export const getServerSideProps: GetServerSideProps = async context => {
-  const rover = context.query.rover as string // Get the rover query parameter from the context
-  const page = 1 // Set the initial page number or obtain it as needed
-
-  try {
-    const res = await getMarsData({
-      rover: rover,
-      page: page,
-      startDate: new Date(), // Set your start date logic here
-      sol: undefined, // Set your sol value logic here
-      camera: '', // Set your camera value logic here
-    })
-
-    return {
-      props: {
-        initialData: res.images, // Provide the fetched images data
-      },
-    }
-  } catch (error) {
-    console.error(error)
-    return {
-      props: {
-        initialData: [], // Provide an empty array or a default value
-      },
-    }
-  }
-}
