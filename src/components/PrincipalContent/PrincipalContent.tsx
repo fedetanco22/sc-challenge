@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Image from 'next/image'
 
 import styles from './PrincipalContent.module.css'
@@ -20,7 +20,7 @@ function PrincipalContent(): JSX.Element {
             src={PrincipalImage}
             alt={`principal content`}
             priority={true}
-            quality={100}
+            quality={40}
             width="0"
             height="0"
             sizes={`(max-width: 768px) 100vw, 768px`}
@@ -76,4 +76,4 @@ function PrincipalContent(): JSX.Element {
   )
 }
 
-export default PrincipalContent
+export default memo(PrincipalContent)
