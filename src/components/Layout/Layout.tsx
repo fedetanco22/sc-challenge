@@ -1,7 +1,5 @@
 import React, { FC } from 'react'
 
-import RoverTabs from '../rover-tabs/RoverTabs'
-
 import Navbar from './Navbar/Navbar'
 import Footer from './Footer/Footer'
 import SEO from './SEO/SEO'
