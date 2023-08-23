@@ -57,3 +57,20 @@ a {
 .gapXs {
   gap: 8px;
 }
+
+.global__pagination {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+
+  .MuiPaginationItem-root {
+    color: var(--color-white);
+    background-color: var(--color-gray-dark);
+    &:hover {
+      background-color: var(--color-gray);
+    }
+  }
+  .MuiPaginationItem-root.Mui-selected {
+    background-color: var(--color-primary);
+  }
+}

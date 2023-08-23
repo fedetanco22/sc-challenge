@@ -123,8 +123,6 @@ const RoverPage: FC<RoverPageProps> = ({ initialData }) => {
 
           {data.length !== 0 && (
             <>
-              <RoverList data={data} />
-
               <Stack spacing={2}>
                 <Pagination
                   count={totalPages}

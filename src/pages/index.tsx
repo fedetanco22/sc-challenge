@@ -4,6 +4,7 @@ import PrincipalContent from '@/components/PrincipalContent/PrincipalContent'
 import Spinner from '@/components/Spinner/Spinner'
 import Layout from '@/components/Layout/Layout'
 import Filters from '@/components/Filters/Filters'
+import Pagination from '@/components/Pagination/Pagination'
 import { PoppinsFont } from '@/utils/fonts'
 import styles from '@/styles/Home.module.scss'
 
@@ -23,10 +24,12 @@ export default function Home(): JSX.Element {
           <PrincipalContent />
           <div className={styles.container}>
             <Filters />
+
             <Suspense fallback={<Spinner />}>
               <LazyRoverList />
             </Suspense>
           </div>
+          <Pagination />
         </Layout>
       </div>
     </>

@@ -5,13 +5,12 @@ import React, {
   useState,
   useMemo,
   useEffect,
+  useCallback,
 } from 'react'
 import debounce from 'lodash/debounce'
 
 import { getMarsData } from '../server/api/getMarsData'
 import { MarsImage } from '../interfaces/Interfaces'
-
-import { DataProps } from '@/server/api/getMarsData'
 
 interface AppDataContextInterface {
   marsData: MarsImage[]
@@ -23,6 +22,10 @@ interface AppStateContextInterface {
   filterByPage?: number
   filterBySol?: number | undefined
   filterByCamera?: string | undefined
+  totalPages?: number | undefined
+  maxSol?: number | undefined
+  maxDate?: string | undefined
+  minDate?: string | undefined
 }
 
 interface FilteredContextInterface {
@@ -82,10 +85,15 @@ export const AppContextProvider: FC<AppWrapperChildrenInterface> = ({
   const [filterBySol, setFilterBySol] = useState<number | undefined>(undefined)
   const [filterByCamera, setFilterByCamera] = useState<string>()
 
+  const [totalPages, setTotalPages] = useState<number | undefined>(undefined)
+  const [maxSol, setMaxSol] = useState<number | undefined>(undefined)
+  const [maxDate, setMaxDate] = useState<string | undefined>(undefined)
+  const [minDate, setMinDate] = useState<string | undefined>(undefined)
   const [startDate, _] = useState<Date>(new Date())
   const [loading, setLoading] = useState<boolean>(true)
 
   const [marsData, setMarsData] = useState<MarsImage[]>([])
+  console.log('🚀 ~ file: useAppContext.tsx:96 ~ marsData:', marsData)
 
   const fetchMarsData = async (): Promise<void> => {
     setLoading(true)
@@ -98,6 +106,10 @@ export const AppContextProvider: FC<AppWrapperChildrenInterface> = ({
         startDate: startDate,
       }).then(res => {
         setMarsData(res.images)
+        setTotalPages(res.totalPages)
+        setMaxDate(res.maxDate)
+        setMinDate(res.landingDate)
+        setMaxSol(res.maxSol)
         setLoading(false)
       })
     } catch (error) {
@@ -105,13 +117,16 @@ export const AppContextProvider: FC<AppWrapperChildrenInterface> = ({
     }
   }
 
-  useEffect(() => {
-    fetchMarsData()
-      .then(() => setLoading(false))
-      .catch(() => setLoading(false))
-  }, [filterByRover, filterByPage, filterBySol, filterByCamera, startDate])
+  const debouncedFetchData = useCallback(debounce(fetchMarsData, 600), [
+    filterByRover,
+    filterByPage,
+    filterBySol,
+    filterByCamera,
+  ])
 
-  const debouncedFetchData = debounce(fetchMarsData, 300)
+  useEffect(() => {
+    setFilterByPage(1)
+  }, [filterByRover, filterBySol, filterByCamera])
 
   useEffect(() => {
     debouncedFetchData()
@@ -127,7 +142,7 @@ export const AppContextProvider: FC<AppWrapperChildrenInterface> = ({
   }, [setFilterByRover, setFilterByPage, setFilterBySol, setFilterByCamera])
 
   const appDataContext = useMemo<AppDataContextInterface>(
-    () => ({ marsData, loading, startDate }),
+    () => ({ marsData, loading }),
     [marsData, loading, startDate]
   )
 
@@ -139,6 +154,10 @@ export const AppContextProvider: FC<AppWrapperChildrenInterface> = ({
           filterByPage,
           filterBySol,
           filterByCamera,
+          totalPages,
+          maxSol,
+          maxDate,
+          minDate,
         }}
       >
         <AppDataContext.Provider value={appDataContext}>
